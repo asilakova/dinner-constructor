@@ -41,6 +41,8 @@ public class Main {
         System.out.println("Введите название блюда:");
         String dishName = scanner.nextLine();
 
+        dc.addDishList(dishType,dishName);
+        System.out.println("Добавлен тип блюда "+dishType + " с названием "+dishName);
         // добавьте новое блюдо
     }
 
