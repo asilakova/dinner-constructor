@@ -1,11 +1,14 @@
 package ru.practicum.dinner;
 
+import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class Main {
 
     static DinnerConstructor dc;
     static Scanner scanner;
+
 
     public static void main(String[] args) {
         dc = new DinnerConstructor();
@@ -24,6 +27,7 @@ public class Main {
                     break;
                 case "3":
                     return;
+
             }
         }
     }
@@ -46,22 +50,32 @@ public class Main {
         // добавьте новое блюдо
     }
 
-    private static void generateDishCombo() {
-        System.out.println("Начинаем конструировать обед...");
+   private static void generateDishCombo() {
+        ArrayList <String> comboList = new ArrayList<>();
+        comboList.add("");
 
+        System.out.println("Начинаем конструировать обед...");
         System.out.println("Введите количество наборов, которые нужно сгенерировать:");
         int numberOfCombos = scanner.nextInt();
         scanner.nextLine();
 
         System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
         String nextItem = scanner.nextLine();
+        ArrayList<String> dishTypes = new ArrayList<>();
+         // список введенных типов блюд
 
-        //реализуйте ввод типов блюд
-        while (!nextItem.isEmpty()) {
-
+        while (!nextItem.isEmpty()) { //проверка типа на наличие, выполняется пока не введена пустая строка
+            if (dc.checkType(nextItem)) { //обращаемся за проверкой наличия типа в хэшмапе
+                dishTypes.add(nextItem); // тип есть - добавляем в массив dishTypes для дальнейшей работы
+            } else {
+                System.out.println("Типа блюда "+nextItem+" не существует, введите существующий тип");
+            }
+            nextItem = scanner.nextLine();
         }
-
-        // сгенерируйте комбинации блюд и выведите на экран
-
+        for (int i = 0; i < numberOfCombos; i++) {
+            int x = i+1;
+            System.out.println("Комбо "+ x);
+            System.out.println(dc.generationComboDishes(dishTypes));
+        }
     }
 }
