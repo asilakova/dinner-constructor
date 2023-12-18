@@ -27,7 +27,8 @@ public class Main {
                     break;
                 case "3":
                     return;
-
+                default:
+                    System.out.println("Такой команды нет, выберите из существующих: 1, 2 или 3");
             }
         }
     }
